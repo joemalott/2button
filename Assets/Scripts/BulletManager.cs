@@ -44,7 +44,8 @@ public class BulletManager : MonoBehaviour
 
     void CheckCollision()
     {
-        int layerMask = 1 << 11;
+        // Bit shifting our layers to mask out in the raycast.
+        int layerMask = (1 << 9) | (1 << 10) | (1 << 12) ;
         
         // Play a noise if an object is within the sphere's radius.
         RaycastHit hit;
@@ -53,9 +54,8 @@ public class BulletManager : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f, layerMask))
         {
             
-            Debug.Log("hit");
-            //  Change this float to the current damage indicator. 
-            hit.transform.gameObject.GetComponent<EnemyManager>().health -= 10f;
+         	// #### Do Something!!!
+
             KillObject();
 
         } 

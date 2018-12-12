@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 23521468728560138}
   - component: {fileID: 33898508243001816}
   - component: {fileID: 114242172973667364}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ' Turret 5'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4241947751781774}
   - component: {fileID: 33438754903888912}
   - component: {fileID: 23925399860067586}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Lo_poly_Spaceship_03_by_Liz_Reddington
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4185926694241280}
   - component: {fileID: 96950239946720346}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Exhaust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 23985035625113204}
   - component: {fileID: 33061334063484266}
   - component: {fileID: 114048227817089322}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ' Turret 4'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4706336039797464}
   - component: {fileID: 199006116349596922}
   - component: {fileID: 198041402946951444}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Starfield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 23985580151449836}
   - component: {fileID: 33231000497552796}
   - component: {fileID: 114853295385998194}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ' Turret 2'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 23103035263380098}
   - component: {fileID: 33247869918180626}
   - component: {fileID: 114353770502237814}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ' Turret 3'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 23403062878703024}
   - component: {fileID: 33079317382688948}
   - component: {fileID: 114612134866913834}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ' Turret 1'
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 4026722908681046}
   - component: {fileID: 114685520123476500}
   - component: {fileID: 143346108453878268}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc2132218144b289e337ac5f0c6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTime: 0.5
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
   pooledAmount: 40
 --- !u!114 &114242172973667364
@@ -673,7 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc2132218144b289e337ac5f0c6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTime: 0.5
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
   pooledAmount: 40
 --- !u!114 &114353770502237814
@@ -687,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc2132218144b289e337ac5f0c6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTime: 0.5
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
   pooledAmount: 40
 --- !u!114 &114612134866913834
@@ -701,7 +698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc2132218144b289e337ac5f0c6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTime: 0.5
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
   pooledAmount: 40
 --- !u!114 &114685520123476500
@@ -717,12 +713,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   health: 100
+  fireTime: 0.5
   turrets:
   - {fileID: 1933174993611590}
   - {fileID: 1703608475065342}
   - {fileID: 1887211995629638}
   - {fileID: 1416223814865754}
   - {fileID: 1055722179514638}
+  cannons:
+  - {fileID: 114612134866913834}
+  - {fileID: 114853295385998194}
+  - {fileID: 114353770502237814}
+  - {fileID: 114048227817089322}
+  - {fileID: 114242172973667364}
 --- !u!114 &114853295385998194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,7 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbc2132218144b289e337ac5f0c6078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireTime: 0.5
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
   pooledAmount: 40
 --- !u!143 &143346108453878268

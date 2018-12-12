@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4074427122469778}
   - component: {fileID: 198009861009768598}
   - component: {fileID: 199473599179100352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PowerUp Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4188232079462366}
   - component: {fileID: 108892866498654182}
   - component: {fileID: 135491262287785460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PowerUp
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561736145648464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.1, y: 0, z: -1}
+  m_LocalPosition: {x: -36.4, y: 0, z: -7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4074427122469778}
@@ -83,7 +83,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.061918736, g: 1, b: 0, a: 1}
   m_Intensity: 2
-  m_Range: 4.55
+  m_Range: 2.64
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -132,7 +132,7 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1

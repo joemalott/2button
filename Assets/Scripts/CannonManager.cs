@@ -9,7 +9,7 @@ public class CannonManager : MonoBehaviour {
 
     private GameObject turret;
 
-    public int pooledAmount = 60;
+    private int pooledAmount = 35;
     List<GameObject> bullets;
 
  
