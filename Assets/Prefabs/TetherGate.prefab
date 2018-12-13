@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 65544090746298854}
   - component: {fileID: 198800527401567516}
   - component: {fileID: 199740627527374216}
+  - component: {fileID: 114723140233180482}
   m_Layer: 0
   m_Name: TetherGate
   m_TagString: Tether
@@ -2118,6 +2119,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114723140233180482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532561338191178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bf79da711064ce0a1bf116a341caae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: {x: 10, y: 0, z: 0}
 --- !u!198 &198800527401567516
 ParticleSystem:
   m_ObjectHideFlags: 1

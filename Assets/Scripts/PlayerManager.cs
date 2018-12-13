@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour {
        controller = GetComponent<CharacterController>();
        lastRotation = transform.eulerAngles;
 
-       rotateSpeed = speed * 10;
+       rotateSpeed = speed * 15;
 
        powerLevel = 1;
        savedPowerLevel = 1;
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour {
         if (collision.gameObject.transform.tag == "PowerUp")
         {
             powerLevel += 1;
-            powerLevel = Mathf.Clamp(powerLevel, 1, 8);
+            powerLevel = Mathf.Clamp(powerLevel, 1, 7);
 
             Destroy(collision.gameObject, 0.1f);
         }
@@ -117,7 +117,7 @@ public class PlayerManager : MonoBehaviour {
 
             speed = 10f;
 
-            rotateSpeed = speed * 10;
+            
 
             fireTime = 0.5f;
 
@@ -138,14 +138,10 @@ public class PlayerManager : MonoBehaviour {
     		   if (powerLevel >= 3)
                {
                 
-                turrets[1].SetActive(true);
-                turrets[2].SetActive(true);
-
-                fireTime = 0.4f;
+                
+                fireTime = 0.35f;
 
                 speed = 15;
-
-                rotateSpeed = speed * 9;
 
                 savedPowerLevel = powerLevel;
                }
@@ -153,55 +149,44 @@ public class PlayerManager : MonoBehaviour {
     		   if (powerLevel >= 4)
                {
    
-                fireTime = 0.4f;
+                turrets[1].SetActive(true);
+                turrets[2].SetActive(true);
+
+      
 
                 savedPowerLevel = powerLevel;
                }
 
     		   if (powerLevel >= 5)
                {
-    		   	    fireTime = 0.35f;
+    		   	    fireTime = 0.3f;
 
-                speed = 20;
-
-                rotateSpeed = speed * 8;
-
+                speed = 20f;
+ 
                 savedPowerLevel = powerLevel;
                }
 
             if (powerLevel >= 6)
                {
-                fireTime = 0.3f;
+                fireTime = 0.25f;
+                  speed = 25f;
 
                 savedPowerLevel = powerLevel;
                }
 
             if (powerLevel >= 7)
                {
-                fireTime = 0.25f;
+                fireTime = 0.22f;
 
-                speed = 25;
+                speed = 24f;
 
-                rotateSpeed = speed * 7;
-
-                savedPowerLevel = powerLevel;
-               }
-
-            if (powerLevel >= 8)
-               {
-                fireTime = 0.2f;
-
-                speed = 30;
-
-                rotateSpeed = speed * 6;
 
                 savedPowerLevel = powerLevel;
                }
 
-    	}
+        	}
 
     }
-
 
 
    IEnumerator InitiateFire()
