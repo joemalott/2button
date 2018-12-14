@@ -41,7 +41,10 @@ public class EnemySpawner : MonoBehaviour {
 
     IEnumerator WaitTimer ()
     {
-    	yield return new WaitForSeconds(spawnRate);
+
+        float tempSpawnRate = spawnRate - (0.2f * PlayerManager.instance.powerLevel);
+
+    	yield return new WaitForSeconds(tempSpawnRate);
     	StartCoroutine(StartSpawning());
     }
 

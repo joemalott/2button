@@ -45,22 +45,34 @@ public class BulletManager : MonoBehaviour
     void CheckCollision()
     {
         // Bit shifting our layers to mask out in the raycast.
-        int layerMask = (1 << 9) | (1 << 10) | (1 << 11) ;
+        int layerMask = (1 << 9);
 
         
-        // Play a noise if an object is within the sphere's radius.
         RaycastHit hit;
 
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f, layerMask))
         {
             
-         	// #### Do Something!!!
+        
 
-            // KillObject();
+         	if (hit.transform.tag == "Asteroid")
+                hit.transform.GetComponent<AsteroidHealth>().Hit(hit.point);
+            if (hit.transform.tag == "Drone")
+                hit.transform.GetComponent<DroneHealth>().Hit(hit.point);
+            if (hit.transform.tag == "Player")
+            {
+                var pm = hit.transform.GetComponent<PlayerManager>();
+                pm.health -= 10;
+                pm.Shield(hit.point);
+            }
+                 
+// lalalal
+
+            KillObject();
 
         } 
-        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f, ~layerMask))
+        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1f, ~layerMask))
         {
 
             KillObject();

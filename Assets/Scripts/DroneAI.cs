@@ -11,11 +11,17 @@ public class DroneAI : MonoBehaviour {
 	 
 	private int minDistance = 10;
 	private int originalSafeDistance = 30;
-	private int safeDistance = 30; 
+	private int safeDistance = 50; 
 	 
 	public enum AIState {Idle, Seek, Flee }
 
 	public AIState currentState;
+
+	public GameObject droneBullet;
+
+	public float fireRate = 2f;
+
+	bool canShoot = false;
 
 	bool checkPlayer = true;
 
@@ -40,9 +46,15 @@ public class DroneAI : MonoBehaviour {
 			gameObject.SetActive(false);
 		}
 
+		StartCoroutine(FireBullet());
+
 	}
 
 
+	void OnDisable ()
+	{
+		canShoot = false;
+	}
 	
 
 
@@ -68,7 +80,16 @@ public class DroneAI : MonoBehaviour {
 	 
 	   transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
 	 
-	   if(direction.magnitude > minDistance){
+	   if(direction.magnitude > minDistance * 2 && direction.magnitude < originalSafeDistance * 2)
+	   {
+	 
+	      canShoot = true;
+	 
+	   } else {
+	   		canShoot = false;
+	   }
+
+	   if(direction.magnitude > minDistance ){
 	 
 	      Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 	 
@@ -93,6 +114,22 @@ public class DroneAI : MonoBehaviour {
 	   }
 	}
 	
+	IEnumerator FireBullet () {
+
+		if (canShoot)
+		{
+			Instantiate(droneBullet, transform.position + transform.forward * 2, transform.rotation);
+		}
+
+		return WaitABit();
+
+	}
+
+	IEnumerator WaitABit()
+	{
+		yield return new WaitForSeconds(fireRate);
+		StartCoroutine(FireBullet());
+	}
 	
 	 
 }

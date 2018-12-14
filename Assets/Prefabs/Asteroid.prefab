@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4428250682595614}
   - component: {fileID: 33948331389157240}
   - component: {fileID: 23247266231143508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4163825925344974}
   - component: {fileID: 33117208159784620}
   - component: {fileID: 23264063474815352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4451016867244728}
   - component: {fileID: 33826159864514832}
   - component: {fileID: 23970987705998352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4196344240329172}
   - component: {fileID: 33741302542717642}
   - component: {fileID: 23208534222068576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4421077710787492}
   - component: {fileID: 33477858366054830}
   - component: {fileID: 23661192963161066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4066231280113604}
   - component: {fileID: 33803178886141886}
   - component: {fileID: 23429363677570130}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4982646596675074}
   - component: {fileID: 33739910186696868}
   - component: {fileID: 23565227926297928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4835329178856652}
   - component: {fileID: 33056205315146562}
   - component: {fileID: 23647644198474658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4706017867599534}
   - component: {fileID: 33988701677594136}
   - component: {fileID: 23880871709277072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,11 +172,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4283440981063010}
-  - component: {fileID: 65303923153831858}
   - component: {fileID: 114576533411319226}
-  m_Layer: 0
+  - component: {fileID: 114958017325419602}
+  - component: {fileID: 135242382636853652}
+  m_Layer: 9
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897022549331428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 72.2, y: 0, z: 61.4}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4451016867244728}
@@ -698,18 +699,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854923774614148}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65303923153831858
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1897022549331428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114576533411319226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,3 +712,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 9, y: 8, z: 2}
   isAsteroid: 1
+--- !u!114 &114958017325419602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897022549331428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6466d3bad94b7484433224e216fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  chanceToSpawnPowerUp: 1
+  asteroidHitParticles: {fileID: 1302624345800182, guid: 9451f664430774f369e8e2aeeff30ef7,
+    type: 2}
+  asteroidBreakParticles: {fileID: 1044244171503104, guid: 9f2e0bd3b7ce2451da5c831b87b5d6a8,
+    type: 2}
+  powerUp: {fileID: 1561736145648464, guid: 1844fa4a9bd6942a1bca2919376bb326, type: 2}
+--- !u!135 &135242382636853652
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897022549331428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0.01, y: 0, z: 0.2}

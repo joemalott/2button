@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public float speed = 10.0f;
+    public float speed = 15f;
     private float rotateSpeed;
 
     private CharacterController controller;
@@ -14,12 +14,14 @@ public class PlayerManager : MonoBehaviour {
     public int powerLevel;
     private int savedPowerLevel;
 
-    public int health = 100;
+    public int health = 50;
 
     public float fireTime = 0.5f;
- 
 
-    public GameObject[] turrets;
+    public GameObject shieldParticles;
+
+    bool canBeDamaged= true;
+ 
 
     public CannonManager[] cannons;
   
@@ -53,7 +55,7 @@ public class PlayerManager : MonoBehaviour {
        controller = GetComponent<CharacterController>();
        lastRotation = transform.eulerAngles;
 
-       rotateSpeed = speed * 15;
+       rotateSpeed = speed * speed;
 
        powerLevel = 1;
        savedPowerLevel = 1;
@@ -94,7 +96,7 @@ public class PlayerManager : MonoBehaviour {
         if (collision.gameObject.transform.tag == "PowerUp")
         {
             powerLevel += 1;
-            powerLevel = Mathf.Clamp(powerLevel, 1, 7);
+            powerLevel = Mathf.Clamp(powerLevel, 1, 5);
 
             Destroy(collision.gameObject, 0.1f);
         }
@@ -109,26 +111,26 @@ public class PlayerManager : MonoBehaviour {
 
     		   if (powerLevel >= 1)
                {
-    		   	turrets[0].SetActive(true);
-            turrets[1].SetActive(false);
-            turrets[2].SetActive(false);
-            turrets[3].SetActive(false);
-            turrets[4].SetActive(false);
+		    		cannons[0].gameObject.SetActive(true);
+		            cannons[1].gameObject.SetActive(false);
+		            cannons[2].gameObject.SetActive(false);
+		            cannons[3].gameObject.SetActive(false);
+		            cannons[4].gameObject.SetActive(false);
 
-            speed = 10f;
+		            speed = 15f;
 
-            
+		            
 
-            fireTime = 0.5f;
+		            fireTime = 0.5f;
 
-                savedPowerLevel = powerLevel;
+		            savedPowerLevel = powerLevel;
                }
 
     		   if (powerLevel >= 2)
                {
     		
-                turrets[3].SetActive(true);
-                turrets[4].SetActive(true);
+                cannons[3].gameObject.SetActive(true);
+                cannons[4].gameObject.SetActive(true);
 
                 fireTime = 0.45f;
 
@@ -141,7 +143,7 @@ public class PlayerManager : MonoBehaviour {
                 
                 fireTime = 0.35f;
 
-                speed = 15;
+                speed = 17;
 
                 savedPowerLevel = powerLevel;
                }
@@ -149,8 +151,8 @@ public class PlayerManager : MonoBehaviour {
     		   if (powerLevel >= 4)
                {
    
-                turrets[1].SetActive(true);
-                turrets[2].SetActive(true);
+                cannons[1].gameObject.SetActive(true);
+                cannons[2].gameObject.SetActive(true);
 
       
 
@@ -166,25 +168,7 @@ public class PlayerManager : MonoBehaviour {
                 savedPowerLevel = powerLevel;
                }
 
-            if (powerLevel >= 6)
-               {
-                fireTime = 0.25f;
-                  speed = 25f;
-
-                savedPowerLevel = powerLevel;
-               }
-
-            if (powerLevel >= 7)
-               {
-                fireTime = 0.22f;
-
-                speed = 24f;
-
-
-                savedPowerLevel = powerLevel;
-               }
-
-        	}
+        }
 
     }
 
@@ -206,6 +190,48 @@ public class PlayerManager : MonoBehaviour {
     yield return new WaitForSeconds(fireTime);
     StartCoroutine(InitiateFire());
    }
+
+   void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+     	if (health <= 0)
+     	{
+     		Death();
+     	}
+
+     	else {
+     	
+	     	if (canBeDamaged)
+	     	{
+	     		health -= 10;
+	     		Shield(collision.point);
+	     		canBeDamaged = false;
+	     		StartCoroutine(InvulnerableTimer());
+	     	}
+     	}
+     
+    }
+
+
+   public void Shield (Vector3 hitPoint)
+   {
+   		Vector3 relativePos = hitPoint - transform.position;
+
+        // the second argument, upwards, defaults to Vector3.up
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+       
+   		GameObject shieldparts = Instantiate(shieldParticles, transform.position, rotation);
+   		shieldparts.transform.SetParent(gameObject.transform);
+   }
     
+    IEnumerator InvulnerableTimer ()
+    {
+    	yield return new WaitForSeconds(1f);
+    	canBeDamaged = true;
+    }
+
+    public void Death ()
+    {
+
+    }
 
 }

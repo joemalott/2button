@@ -7,6 +7,8 @@ TagManager:
   - Tether
   - PowerUp
   - Enemy
+  - Asteroid
+  - Drone
   layers:
   - Default
   - TransparentFX
@@ -17,9 +19,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Bullet
-  - PowerUp
-  - Player
+  - BulletHittable
+  - NoSelfCollision
+  - 
   - 
   - 
   - 
