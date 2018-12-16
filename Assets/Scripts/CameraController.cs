@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour {
 
 	public Transform player;
 
-	public float cameraLerpSpeed = 3f;
 
 	
 

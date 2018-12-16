@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4628059530092890}
   - component: {fileID: 114524433326033346}
   - component: {fileID: 114281828913551636}
+  - component: {fileID: 114990484862291944}
   m_Layer: 9
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -217,7 +218,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703608475065342}
   m_LocalRotation: {x: -0, y: -0.1564345, z: -0, w: 0.98768836}
-  m_LocalPosition: {x: -0.8, y: 0, z: 4.71}
+  m_LocalPosition: {x: -0.8, y: 0, z: 3.260003}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4241947751781774}
@@ -263,7 +264,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887211995629638}
   m_LocalRotation: {x: -0, y: 0.1564345, z: -0, w: 0.98768836}
-  m_LocalPosition: {x: 0.8, y: 0, z: 4.71}
+  m_LocalPosition: {x: 0.8, y: 0, z: 2.9000025}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4241947751781774}
@@ -289,7 +290,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933174993611590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.71}
+  m_LocalPosition: {x: 0, y: 0, z: 2.38}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4241947751781774}
@@ -302,7 +303,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416223814865754}
   m_LocalRotation: {x: -0, y: 0.2588191, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: 1.4, y: 0, z: 4}
+  m_LocalPosition: {x: 1.4, y: 0, z: 2.19}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4241947751781774}
@@ -341,7 +342,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055722179514638}
   m_LocalRotation: {x: -0, y: -0.258819, z: -0, w: 0.9659259}
-  m_LocalPosition: {x: -1.4, y: 0, z: 4}
+  m_LocalPosition: {x: -1.4, y: 0, z: 2.55}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4241947751781774}
@@ -730,6 +731,8 @@ MonoBehaviour:
     type: 2}
   playerDeathParticles: {fileID: 1105235467183456, guid: ab6ec2fd4bd1342498d04d8f40f8f5a6,
     type: 2}
+  spaceShip: {fileID: 1237419777230346}
+  anim: {fileID: 0}
   cannons:
   - {fileID: 114612134866913834}
   - {fileID: 114853295385998194}
@@ -748,6 +751,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1773708094259252, guid: 69260046ac00b463887d397985145ac7, type: 2}
+--- !u!114 &114990484862291944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257390884781548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325d95f4b0c41450cba2e48e8807e7b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1677367107844336, guid: 3a2d955135fc04a0b8cc39d09cad9ec0, type: 2}
+  spawnRadius: 40
+  despawnDistance: 100
 --- !u!143 &143346108453878268
 CharacterController:
   m_ObjectHideFlags: 1

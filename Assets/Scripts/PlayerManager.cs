@@ -74,6 +74,8 @@ public class PlayerManager : MonoBehaviour {
     void FixedUpdate()
     {
 
+    	health = Mathf.Clamp(health, 0, 200);
+
         if (Input.GetButton("left") && !Input.GetButton("right") && canMove == true)
         {
             Vector3 stickRotation = new Vector3(lastRotation.x, lastRotation.y - (rotateSpeed * Time.deltaTime), lastRotation.z);
@@ -89,7 +91,17 @@ public class PlayerManager : MonoBehaviour {
        
         transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, lastRotation, Time.deltaTime * rotateSpeed);
 
-        controller.Move( transform.forward * speed * Time.deltaTime);
+        var tempSpeed = speed;
+
+        if (Input.GetButton("right") && Input.GetButton("left") && canMove == true)
+        {
+        	tempSpeed = speed + 20;
+        } else {
+        	tempSpeed = speed;
+        }
+
+
+        controller.Move( transform.forward * tempSpeed * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
@@ -140,7 +152,7 @@ public class PlayerManager : MonoBehaviour {
 
     		   if (powerLevel >= 1)
                {
-		    		    cannons[0].gameObject.SetActive(true);
+		    		cannons[0].gameObject.SetActive(true);
 		            cannons[1].gameObject.SetActive(false);
 		            cannons[2].gameObject.SetActive(false);
 		            cannons[3].gameObject.SetActive(false);

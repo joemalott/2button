@@ -13,11 +13,7 @@ public class AsteroidHealth : MonoBehaviour {
 
 	public GameObject[] pickups;
 
-	public void OnEnable()
-	{
-		health = Director.instance.score / 1000 * 10 + 10;
-		health = Mathf.Clamp(health, 20, 80);
-	}
+	
 
 	public void Hit(Vector3 hitLocation)
 	{

@@ -6,11 +6,11 @@ public class BansheeSpawner : MonoBehaviour {
 
 	 public GameObject enemy;
 
-    public float spawnRadius = 100f;
+    public float spawnRadius;
 
-    public float despawnDistance = 150f;
+    public float despawnDistance;
 
-    int tempScore;
+
 
     List<GameObject> enemies;
 
@@ -19,51 +19,57 @@ public class BansheeSpawner : MonoBehaviour {
     {
        
         enemies = new List<GameObject>();
-
-        tempScore = Director.instance.score;
-    	
-       
+  
         StartCoroutine(Spawn());
-      	
-
-
 
     }
-
-   
-
-
-
 
     public IEnumerator Spawn()
     {
 
+            yield return new WaitForSeconds(14f);
 
-    	if (Director.instance.score - tempScore >= 100)
-    		{
-    			GameObject banshee = Instantiate(enemy, Utilities.RandomPointOnUnitCircle(spawnRadius) + transform.position, transform.rotation);
+    	
+    			GameObject banshee = Instantiate(enemy, Utilities.RandomPointOnUnitCircle(spawnRadius) + transform.position, Quaternion.LookRotation(transform.position, Vector3.up));
 	
+                Debug.Log("Spawned Banshee");
+
 				enemies.Add(banshee);  
 
-				tempScore = Director.instance.score;
+			
 
-    		}
-
-    		yield return new WaitForSeconds(1f);
+    		
 
     		foreach (GameObject enemy in enemies)
     		{
     			float dist = Vector3.Distance(enemy.transform.position, transform.position);
             	if (dist >= despawnDistance)
             	{
-            		enemies.Remove(enemy);
-            		Destroy(enemy.gameObject);
+
+                    enemy.transform.position = Utilities.RandomPointOnUnitCircle(spawnRadius) + transform.position;
+            		enemy.transform.rotation = Quaternion.LookRotation(transform.position, Vector3.up);
+                    Debug.Log("Moved Banshee");
             	}
     		}
+
+          
+
+            BounceBack();
 
     }
 
 
+    IEnumerator BounceBack ()
+    {
+        
+        yield return new WaitForSeconds(1f);
+        Spawn();
+    }
+
+    void OnDisable()
+    {
+        enemies.Remove(gameObject);
+    }
   
 
 }
