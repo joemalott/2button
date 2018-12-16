@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour {
 
 	
 
-	void FixedUpdate () 
+	void LateUpdate () 
 	{
 
 		if (player == null)
@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour {
 
 		if (player != null)
 		{
-			transform.position = Vector3.Lerp(transform.position, player.transform.position, cameraLerpSpeed * Time.deltaTime);
+			transform.position = player.transform.position;
 		}
 	}
 	

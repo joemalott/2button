@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114539971618589008}
   - component: {fileID: 114482149583867016}
   m_Layer: 9
-  m_Name: Drone
+  m_Name: Banshee
   m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 1677367107844336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 30}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4490700097436606}
   - {fileID: 4329645678133570}
@@ -120,9 +120,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: 2ae66b6ff141a4e5ca62f1be11705f9c, type: 2}
+  - {fileID: 2100000, guid: 0b1bd2e79999b4539a2f5598cc89fb40, type: 2}
   - {fileID: 2100000, guid: beb389e22129f4478996cbe893d8dff9, type: 2}
-  - {fileID: 2100000, guid: 4e6b109afc12749188f2e78945ed037e, type: 2}
-  - {fileID: 2100000, guid: 6be4d7a328e2d4986bd3f7beb88825cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,7 +148,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1928733755821158}
-  m_Mesh: {fileID: 4300000, guid: aab7668cfc4e64b35a5489dd3577bc99, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 4d5d928a9ffc74452bffc792a07be352, type: 3}
 --- !u!54 &54670814916366532
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980c360b6087f422aaea23b97a750b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  chanceToSpawnPowerUp: 5
-  droneDeathParticles: {fileID: 1704800765339404, guid: 458298414c3d242fb8893805ffb37a81,
+  health: 40
+  chanceToSpawnPowerUp: 20
+  droneDeathParticles: {fileID: 1704800765339404, guid: 57384bc96730d40088d0349d98404091,
     type: 2}
   pickups:
   - {fileID: 1561736145648464, guid: 1844fa4a9bd6942a1bca2919376bb326, type: 2}
@@ -307,12 +307,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  moveSpeed: 7
-  rotationSpeed: 6
+  moveSpeed: 3
+  rotationSpeed: 3
   currentState: 0
   droneBullet: {fileID: 1066859426534194, guid: 2257b3c5a30844f00bd425c6993cb3b8,
     type: 2}
-  fireRate: 3
+  fireRate: 1
 --- !u!114 &114989520862319480
 MonoBehaviour:
   m_ObjectHideFlags: 1

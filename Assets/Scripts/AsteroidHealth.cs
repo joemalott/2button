@@ -6,12 +6,18 @@ public class AsteroidHealth : MonoBehaviour {
 
 	public float health = 20f;
 
-	public float chanceToSpawnPowerUp = 1f;
+	public float chanceToSpawnPowerUp = 5f;
 
 	public GameObject asteroidHitParticles;
 	public GameObject asteroidBreakParticles;
 
-	public GameObject powerUp;
+	public GameObject[] pickups;
+
+	public void OnEnable()
+	{
+		health = Director.instance.score / 1000 * 10 + 10;
+		health = Mathf.Clamp(health, 20, 80);
+	}
 
 	public void Hit(Vector3 hitLocation)
 	{
@@ -31,9 +37,10 @@ public class AsteroidHealth : MonoBehaviour {
 
 			Director.instance.score += 10;
 
-			if (Random.Range(0,10) <= chanceToSpawnPowerUp)
+			if (Random.Range(0,100) <= chanceToSpawnPowerUp)
 			{
-				Instantiate(powerUp, gameObject.transform.position, Quaternion.identity);
+				int index = Random.Range(0, pickups.Length);
+				Instantiate(pickups[index], gameObject.transform.position, Quaternion.identity);
 			}
 
 			gameObject.SetActive(false);

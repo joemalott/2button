@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Asteroid
   - Drone
+  - Health
   layers:
   - Default
   - TransparentFX

@@ -228,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897022549331428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.2, y: 0, z: 61.4}
+  m_LocalPosition: {x: -87.8, y: 0, z: 57.4}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4451016867244728}
@@ -724,12 +724,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  chanceToSpawnPowerUp: 1
+  chanceToSpawnPowerUp: 5
   asteroidHitParticles: {fileID: 1302624345800182, guid: 9451f664430774f369e8e2aeeff30ef7,
     type: 2}
   asteroidBreakParticles: {fileID: 1044244171503104, guid: 9f2e0bd3b7ce2451da5c831b87b5d6a8,
     type: 2}
-  powerUp: {fileID: 1561736145648464, guid: 1844fa4a9bd6942a1bca2919376bb326, type: 2}
+  pickups:
+  - {fileID: 1561736145648464, guid: 1844fa4a9bd6942a1bca2919376bb326, type: 2}
+  - {fileID: 1561736145648464, guid: 76550fb3f1e394cb293362ed2f193459, type: 2}
 --- !u!135 &135242382636853652
 SphereCollider:
   m_ObjectHideFlags: 1

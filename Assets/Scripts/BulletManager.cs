@@ -66,9 +66,8 @@ public class BulletManager : MonoBehaviour
                 pm.health -= 10;
                 pm.Shield(hit.point);
             }
-                 
-// lalalal
-
+           
+           
             KillObject();
 
         } 

@@ -6,11 +6,17 @@ public class DroneHealth : MonoBehaviour {
 
 	public float health = 10f;
 
-	public float chanceToSpawnPowerUp = 1f;
+	public float chanceToSpawnPowerUp = 5f;
 
 	public GameObject droneDeathParticles;
 
-	public GameObject powerUp;
+	public GameObject[] pickups;
+
+	public void OnEnable()
+	{
+		health = Director.instance.score / 2000 * 10;
+		health = Mathf.Clamp(health, 10, 20);
+	}
 
 	public void Hit(Vector3 hitLocation)
 	{
@@ -22,9 +28,10 @@ public class DroneHealth : MonoBehaviour {
 		{
 			Instantiate(droneDeathParticles, gameObject.transform.position, Quaternion.identity);
 			Director.instance.score += 10;
-			if (Random.Range(0,20) <= chanceToSpawnPowerUp)
+			if (Random.Range(0,100) <= chanceToSpawnPowerUp)
 			{
-				Instantiate(powerUp, gameObject.transform.position, Quaternion.identity);
+				int index = Random.Range(0, pickups.Length);
+				Instantiate(pickups[index], gameObject.transform.position, Quaternion.identity);
 			}
 
 			gameObject.SetActive(false);

@@ -11,7 +11,13 @@ public class Director : MonoBehaviour {
 
         public int score;
 
+        public int playerHealth;
+
         public TextMeshProUGUI scoreText;
+
+        public TextMeshProUGUI healthText;
+
+        int tempScore;
         
 
 
@@ -30,17 +36,24 @@ public class Director : MonoBehaviour {
                 //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a Director.
                 Destroy(gameObject);    
             
-            //Sets this to not be destroyed when reloading scene
-            DontDestroyOnLoad(gameObject);
+  
         
-            InvokeRepeating("CheckStuff", 1f, 1f);
+            InvokeRepeating("CheckStuff", 1f, 0.5f);
 
         }
 
 
         void CheckStuff () {
+            
+          
+            healthText.text = "HP: " + playerHealth.ToString() + "%";
+
+
             scoreText.text = score.ToString();
+
         }
+
+       
 
 
 

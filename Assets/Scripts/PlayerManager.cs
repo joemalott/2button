@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -14,13 +15,23 @@ public class PlayerManager : MonoBehaviour {
     public int powerLevel;
     private int savedPowerLevel;
 
-    public int health = 50;
+    public int health = 100;
 
     public float fireTime = 0.5f;
 
     public GameObject shieldParticles;
 
+    public GameObject playerDeathParticles;
+
+    public GameObject spaceShip;
+
+    public Animator anim;
+
     bool canBeDamaged= true;
+
+    bool dying = false;
+
+    bool canMove = false;
  
 
     public CannonManager[] cannons;
@@ -43,11 +54,6 @@ public class PlayerManager : MonoBehaviour {
                 //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a Director.
                 Destroy(gameObject);    
             
-            //Sets this to not be destroyed when reloading scene
-            DontDestroyOnLoad(gameObject);
-
-         
-
         }
 
     
@@ -60,21 +66,21 @@ public class PlayerManager : MonoBehaviour {
        powerLevel = 1;
        savedPowerLevel = 1;
 
-       InvokeRepeating("CheckStats", 0, 1);
+       InvokeRepeating("CheckStats", 0, 0.2f);
 
-       StartCoroutine(InitiateFire());
+       StartCoroutine(StartWait());
     }
 
     void FixedUpdate()
     {
 
-        if (Input.GetButton("left") && !Input.GetButton("right"))
+        if (Input.GetButton("left") && !Input.GetButton("right") && canMove == true)
         {
             Vector3 stickRotation = new Vector3(lastRotation.x, lastRotation.y - (rotateSpeed * Time.deltaTime), lastRotation.z);
             lastRotation = stickRotation;
         }
 
-        if (Input.GetButton("right") && !Input.GetButton("left"))
+        if (Input.GetButton("right") && !Input.GetButton("left") && canMove == true)
         {
             Vector3 stickRotation = new Vector3(lastRotation.x, lastRotation.y + (rotateSpeed * Time.deltaTime), lastRotation.z);
             lastRotation = stickRotation;
@@ -87,6 +93,8 @@ public class PlayerManager : MonoBehaviour {
 
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
+        if (Director.instance != null)
+          Director.instance.playerHealth = health;
 
     }
 
@@ -100,10 +108,31 @@ public class PlayerManager : MonoBehaviour {
 
             Destroy(collision.gameObject, 0.1f);
         }
+
+        if (collision.gameObject.transform.tag == "Tether")
+        {
+          int toLevel = collision.GetComponent<Tether>().levelToLoad;
+          anim.Play("accelerate");
+          StartCoroutine(WaitToLoad(toLevel));
+        }
+
+        if (collision.gameObject.transform.tag == "Health")
+        {
+          health += 10;
+          powerLevel = Mathf.Clamp(powerLevel, -100, 100);
+
+          Destroy(collision.gameObject, 0.1f);
+        }
+
     }
 
 
     void CheckStats () {
+
+      if (health <= 0)
+      {
+        Death();
+      }
 
     	if (savedPowerLevel != powerLevel)
     	{
@@ -111,7 +140,7 @@ public class PlayerManager : MonoBehaviour {
 
     		   if (powerLevel >= 1)
                {
-		    		cannons[0].gameObject.SetActive(true);
+		    		    cannons[0].gameObject.SetActive(true);
 		            cannons[1].gameObject.SetActive(false);
 		            cannons[2].gameObject.SetActive(false);
 		            cannons[3].gameObject.SetActive(false);
@@ -172,6 +201,15 @@ public class PlayerManager : MonoBehaviour {
 
     }
 
+    IEnumerator StartWait()
+    {
+    	yield return new WaitForSeconds(1.5f);
+
+      canMove = true;
+
+    	StartCoroutine(InitiateFire());
+    }
+
 
    IEnumerator InitiateFire()
    {
@@ -193,12 +231,7 @@ public class PlayerManager : MonoBehaviour {
 
    void OnControllerColliderHit(ControllerColliderHit collision)
     {
-     	if (health <= 0)
-     	{
-     		Death();
-     	}
-
-     	else {
+    
      	
 	     	if (canBeDamaged)
 	     	{
@@ -207,7 +240,7 @@ public class PlayerManager : MonoBehaviour {
 	     		canBeDamaged = false;
 	     		StartCoroutine(InvulnerableTimer());
 	     	}
-     	}
+     	
      
     }
 
@@ -225,13 +258,53 @@ public class PlayerManager : MonoBehaviour {
     
     IEnumerator InvulnerableTimer ()
     {
-    	yield return new WaitForSeconds(1f);
+    	yield return new WaitForSeconds(1.5f);
     	canBeDamaged = true;
     }
 
     public void Death ()
     {
+        Scene scene = SceneManager.GetActiveScene();
 
+        if (PlayerPrefs.GetInt("Level_" + scene.buildIndex.ToString() + "_HighScore") < Director.instance.score)
+        {
+          PlayerPrefs.SetInt("Level_" + scene.buildIndex.ToString() + "_HighScore", Director.instance.score);
+
+          PlayerPrefs.Save();
+        }
+       
+        if (!dying)
+          StartCoroutine(Despawn());
     }
+
+    IEnumerator Despawn()
+    {
+        dying = true;
+        Instantiate(playerDeathParticles, transform.position, Quaternion.identity);
+        spaceShip.SetActive(false);
+        Time.timeScale = 0.2f;
+        yield return StartCoroutine(WaitForRealSeconds(4f));
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Hub");
+    }
+
+
+    public static IEnumerator WaitForRealSeconds(float time)
+     {
+         float start = Time.realtimeSinceStartup;
+         while (Time.realtimeSinceStartup < start + time)
+         {
+             yield return null;
+         }
+     }
+
+
+     IEnumerator WaitToLoad(int toLevel)
+     {
+
+      yield return new WaitForSeconds(1.5f);
+      SceneManager.LoadScene(toLevel);
+     }
+
 
 }
