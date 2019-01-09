@@ -40,14 +40,14 @@ public class BansheeSpawner : MonoBehaviour {
 
     		
 
-    		foreach (GameObject enemy in enemies)
+    		foreach (GameObject en in enemies)
     		{
-    			float dist = Vector3.Distance(enemy.transform.position, transform.position);
+    			float dist = Vector3.Distance(en.transform.position, transform.position);
             	if (dist >= despawnDistance)
             	{
 
-                    enemy.transform.position = Utilities.RandomPointOnUnitCircle(spawnRadius) + transform.position;
-            		enemy.transform.rotation = Quaternion.LookRotation(transform.position, Vector3.up);
+                    en.transform.position = Utilities.RandomPointOnUnitCircle(spawnRadius) + transform.position;
+            		en.transform.rotation = Quaternion.LookRotation(transform.position, Vector3.up);
                     Debug.Log("Moved Banshee");
             	}
     		}
